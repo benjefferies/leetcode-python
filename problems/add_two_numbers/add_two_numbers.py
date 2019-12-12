@@ -17,9 +17,10 @@ class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         _init_uneven_arrays(l1, l2)
 
+        num = l1.val + l2.val
+        carry = num % 10
+
         if l1.next is None or l2.next is None:
-            num = l1.val + l2.val
-            carry = num % 10
             if num - carry >= 10:
                 l1.next = ListNode(1)
                 l2.next = ListNode(0)
@@ -29,8 +30,6 @@ class Solution:
                 return new
             return ListNode(carry)
 
-        num = l1.val + l2.val
-        carry = num % 10
         if num - carry >= 10:
             l1.next.val = l1.next.val + 1
         node = self.addTwoNumbers(l1.next, l2.next)
